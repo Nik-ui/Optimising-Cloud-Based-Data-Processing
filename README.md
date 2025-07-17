@@ -1,9 +1,6 @@
 ---
 title: "Optimising Cloud-Based Data Processing: A Case Study on Azure and Near-Earth Object Analysis"
 author: "Fatimo Adeniya"
-course: "LDS7005M – Big Data and Cloud Computing"
-date: "2025"
-version: "1.0"
 ---
 
 # Optimising Cloud-Based Data Processing: A Case Study on Azure and Near-Earth Object Analysis
