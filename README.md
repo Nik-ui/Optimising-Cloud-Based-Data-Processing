@@ -75,6 +75,8 @@ This project presents a scalable big data pipeline designed to ingest, process, 
 - Access managed via **RBAC** and **Azure Active Directory**
 
 ---
+Dataset link:  
+https://www.kaggle.com/datasets/ivansher/nasa-nearest-earth-objects-1910-2024?resource=download
 
 ## Project Directory Structure
 
@@ -87,3 +89,4 @@ This project presents a scalable big data pipeline designed to ingest, process, 
 │   └── *.png
 ├── /data
 │   └── nearest-earth-objects.csv
+
