@@ -1,119 +1,82 @@
----
-title: "Optimising Cloud-Based Data Processing: A Case Study on Azure and Near-Earth Object Analysis"
-author: "Fatimo Adeniya"
----
+# Optimising Cloud-Based Data Processing  
+### A Case Study on Azure and Near-Earth Object Analysis
 
-# Optimising Cloud-Based Data Processing: A Case Study on Azure and Near-Earth Object Analysis
+## Overview
 
-##  Project Overview
-
-This project explores the design and implementation of a scalable cloud-based data processing pipeline using **Microsoft Azure** and **Apache Spark (Databricks)** to analyse a structured dataset of **Near-Earth Objects (NEOs)** obtained from NASA’s Open API. It demonstrates how cloud-native tools can be used to ingest, process, transform, and model large-scale scientific datasets for real-time decision support in aerospace analytics.
-
+This project presents a scalable big data pipeline designed to ingest, process, and model astronomical datasets on Near-Earth Objects (NEOs) using Microsoft Azure cloud technologies. Leveraging Azure Blob Storage and Apache Spark via Databricks, the architecture demonstrates how scientific datasets can be efficiently transformed into actionable insights that support real-time risk assessment and planetary defense analytics.
 ---
 
-##  Dataset Information
+## Dataset Information
 
 - **Source**: NASA Open API via Kaggle  
-- **Dataset Title**: `Nearest Earth Objects (1910–2024)`  
-- **Records**: ~90,000+ NEO entries  
-- **Format**: CSV (Structured)  
-- **Key Fields**:
-  - `id`, `name`
-  - `absolute_magnitude_h`
-  - `estimated_diameter_min/max`
-  - `relative_velocity`
-  - `miss_distance`
-  - `orbiting_body`
-  - `is_potentially_hazardous_asteroid`
+- **Dataset**: Nearest Earth Objects (1910–2024)  
+- **Records**: ~90,000+  
+- **Format**: CSV  
+- **Key Features**:
+  - ID, name
+  - Absolute magnitude
+  - Diameter estimates
+  - Relative velocity
+  - Miss distance
+  - Orbiting body
+  - Hazardous classification
 
 ---
 
-##  Cloud Services Used
+## Cloud Services Used
 
-- **Azure Blob Storage** for cloud-native object storage  
-- **Azure Databricks** for distributed compute and in-memory analytics (via Apache Spark)  
-- **Azure Cost Management** for financial tracking  
-- **Azure Monitor & Log Analytics** for performance monitoring  
-- **Azure Active Directory & RBAC** for access control  
-- **Parquet & Snappy compression** for storage optimisation
+- **Azure Blob Storage** for structured data ingestion  
+- **Azure Databricks** for distributed Spark processing  
+- **Azure Monitor** for performance metrics  
+- **Azure Cost Management** for budget control  
+- **RBAC & MFA** for secure access  
+- **Parquet format** with Snappy compression for optimisation
+---
+
+## Processing Pipeline Summary
+
+1. **Ingestion**  
+   - Dataset uploaded to Azure Blob Storage  
+   - Connected to Databricks using secure token-based access  
+
+2. **Cleaning**  
+   - Missing values dropped  
+   - Data type casting and deduplication  
+
+3. **Feature Engineering**  
+   - Log transformation of skewed variables  
+   - Composite metrics: `risk_ratio`, `velocity_to_size`  
+
+4. **EDA (Exploratory Data Analysis)**  
+   - Descriptive statistics, visualisation (histograms, heatmaps)  
+   - Target class inspection and correlation analysis  
+
+5. **Model Training**  
+   - Algorithms: Logistic Regression, Random Forest, XGBoost, KNN  
+   - SMOTE used to balance classes  
+   - Metrics: Accuracy, Precision, Recall, AUC  
 
 ---
 
-##  Processing Pipeline
+## Impact and Applications
 
-1. **Data Ingestion**
-   - CSV uploaded to Azure Blob container (`neoprojectdata/datasets`)
-   - Accessed using secure token via Spark config
-
-2. **Data Cleaning**
-   - Removal of missing and duplicate entries using PySpark
-   - Type casting and standardisation
-
-3. **Feature Engineering**
-   - Log-transformations to reduce skew
-   - Composite metrics: `risk_ratio`, `velocity_to_size`
-
-4. **Exploratory Data Analysis (EDA)**
-   - Histograms, boxplots, heatmaps
-   - Target distribution and correlation matrices
-
-5. **Model Training**
-   - Algorithms: Logistic Regression, Random Forest, XGBoost, KNN
-   - SMOTE used for class imbalance correction
-   - Evaluation metrics: Accuracy, Precision, Recall, AUC
+- Improves early detection of hazardous NEOs  
+- Enhances mission planning and disaster response forecasting  
+- Supports explainable AI with engineered features and clean preprocessing  
+- Aligns with real-world data science practices used in aerospace
 
 ---
 
-##  Results Summary
+## Security and Governance Highlights
 
-| Model              | Accuracy | Precision | Recall | AUC  |
-|-------------------|----------|-----------|--------|------|
-| Logistic Regression | 72.5%   | 30.4%     | 89.5%  | 0.84 |
-| Random Forest       | 87.1%   | 49.7%     | 73.8%  | 0.93 |
-| XGBoost             | 75.5%   | 33.9%     | 96.1%  | 0.91 |
-| KNN                 | 82.4%   | 40.1%     | 76.6%  | 0.86 |
-
-- **Best Overall**: Random Forest (balanced performance)
-- **Best Recall**: XGBoost (for risk-sensitive tasks)
+- **AES-256** encryption at rest  
+- **TLS/IPSec** during transit  
+- Compliant with **GDPR**, **HIPAA**, **ISO/IEC 27001**  
+- Access managed via **RBAC** and **Azure Active Directory**
 
 ---
 
-##  Business and Scientific Implications
-
-- Enables **early detection of potentially hazardous asteroids**
-- Supports **planetary defense**, **risk assessment**, and **mission planning**
-- Architecture aligns with real-world standards used by NASA, ESA, and commercial space firms
-
----
-
-##  Security and Compliance
-
-- AES-256 encryption (at rest)
-- TLS/IPSec (in transit)
-- GDPR, HIPAA, ISO/IEC 27001 compliant
-- Role-Based Access Control (RBAC) and Multi-Factor Authentication (MFA)
-
----
-
-##  Cost Optimisation Strategies
-
-- Use of **Spot Instances** and **Auto-Termination** for compute savings  
-- Tiered storage: Hot (active), Cool (archive)  
-- Compression: Parquet + Snappy  
-- Budget alerts via Azure Cost Management tools
-
----
-
-##  Limitations
-
-- No real-time streaming; batch-only processing
-- Pre-1950 data sparsity may bias forecasts
-- Interpretability limitations in ensemble models (no SHAP/LIME implemented)
-- Dependent on Azure ecosystem (portability limits)
-
----
-
-##  Directory Structure
+## Project Directory Structure
 
 ```plaintext
  /azure-neo-pipeline
@@ -121,6 +84,6 @@ This project explores the design and implementation of a scalable cloud-based da
 ├── /notebooks
 │   └── databricks_notebook.ipynb
 ├── /figures
-│   └── *.png (all figures referenced in report)
+│   └── *.png
 ├── /data
 │   └── nearest-earth-objects.csv
